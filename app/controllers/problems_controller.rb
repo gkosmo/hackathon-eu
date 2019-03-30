@@ -26,24 +26,22 @@ class ProblemsController < ApplicationController
   def edit
   end
 
-
   def upvote
     set_problem
     if current_user.voted_for? @problem
-        current_user.unvote_for @problem
+      current_user.unvote_for @problem
     else
-        current_user.up_votes @problem
+      current_user.up_votes @problem
     end
-  
   end
-  
+
   def downvote
     set_problem
-     if current_user.voted_for? @problem
-       current_user.unvote_for @problem
-     else
-       current_user.down_votes @problem
-     end
+    if current_user.voted_for? @problem
+      current_user.unvote_for @problem
+    else
+      current_user.down_votes @problem
+    end
    end
 
   # POST /problems
@@ -53,7 +51,7 @@ class ProblemsController < ApplicationController
 
     @problem.tag_list = @problem.tag_list[0].to_s.scan(/\w+/)
     @problem.status = "Open"
-    @problem.user = current_user 
+    @problem.user = current_user
 
     respond_to do |format|
       if @problem.save
@@ -69,8 +67,12 @@ class ProblemsController < ApplicationController
   # PATCH/PUT /problems/1
   # PATCH/PUT /problems/1.json
   def update
+    new_tags = params[:problem].to_unsafe_h["tag_list"].scan(/\w+/)
+    new_tags.each do |tag|
+      @problem.tag_list.add(tag)
+    end
     respond_to do |format|
-      if @problem.update(problem_params)
+      if @problem.save
         format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @problem }
       else
@@ -101,5 +103,4 @@ class ProblemsController < ApplicationController
   def problem_params
     params.require(:problem).permit(:status, :category_id, :title, :description, :user_id, :status, :tag_list)
   end
-
 end

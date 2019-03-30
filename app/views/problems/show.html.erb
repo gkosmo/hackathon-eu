@@ -1,52 +1,54 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @problem.status %>
-</p>
- <h6> <%= @problem.get_upvotes.size %>:
- <%= link_to '<', upvote_problem_path(@problem), method: :post %>
- </h6>
- <h6>
- <%= link_to '>', downvote_problem_path(@problem), method: :post %> 
-  <%= @problem.get_downvotes.size %>: ></h6>
-<p>
-  <strong>Category:</strong>
-  <%= @problem.category. title %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @problem.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @problem.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @problem.user.email %>
-</p>
-
-
-<% @problem.comments.each do |comment| %>
- <p> <%= comment.description %> </p>
- <h6> <%= comment.get_upvotes.size %>: < </h6> <%= link_to '<', upvote_comment_path(comment), method: :post, remote: true %>
-
-  <h6> <%= comment.get_downvotes.size %>: ></h6><%= link_to '>', downvote_comment_path(comment), method: :post, remote: true %>
-
-<% end %>
-
-
-<%= render 'comments/form', comment: Comment.new, problem: @problem %>
-
-
-<p>
-  <strong>Tags:</strong>
-  <%= @problem.tag_list %>
-</p>
-
-<%= link_to 'Edit', edit_problem_path(@problem) %> |
-<%= link_to 'Back', problems_path %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Status:</strong>
+    <%= @problem.status %>
+  </p>
+  <h6> <%= @problem.get_upvotes.size %>:
+    <%= link_to '<', upvote_problem_path(@problem), method: :post %>
+  </h6>
+  <h6>
+    <%= link_to '>', downvote_problem_path(@problem), method: :post %>
+    <%= @problem.get_downvotes.size %>: ></h6>
+  <p>
+    <strong>Category:</strong>
+    <%= @problem.category. title %>
+  </p>
+  <p>
+    <strong>Title:</strong>
+    <%= @problem.title %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @problem.description %>
+  </p>
+  <p>
+    <strong>User:</strong>
+    <%= @problem.user.email %>
+  </p>
+  <% @problem.comments.each do |comment| %>
+    <p> <%= comment.description %> </p>
+    <h6> <%= comment.get_upvotes.size %>: < </h6> <%= link_to '<', upvote_comment_path(comment), method: :post, remote: true %>
+        <h6> <%= comment.get_downvotes.size %>: ></h6>
+        <%= link_to '>', downvote_comment_path(comment), method: :post, remote: true %>
+      <% end %>
+      <%= render 'comments/form', comment: Comment.new, problem: @problem %>
+      <strong>Tags:</strong>
+      <p>
+        <% if @problem.user == current_user %>
+          <% @problem.tag_list.each do |tag| %>
+            <%= tag %>
+            <%= link_to problem_tag_path(tag),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          <% end%>
+          <%= render 'tags/form' %>
+        <% else%>
+          <%= @problem.tag_list %>
+        <% end%>
+      </p>
+      <%= link_to 'Edit', edit_problem_path(@problem) %> |
+      <%= link_to 'Back', problems_path %>
+    </div>

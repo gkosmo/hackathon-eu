@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post 'downvote'
     end
     resources :comments    
+    resources :tags, only: [:index, :show , :destroy]
   end
   resources :comments, only: [] do
     member do 
@@ -19,6 +20,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 resources :problems
-resources :tags, only: [:index, :show]
+
 
 end
