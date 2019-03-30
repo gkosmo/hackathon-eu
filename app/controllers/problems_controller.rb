@@ -26,13 +26,35 @@ class ProblemsController < ApplicationController
   def edit
   end
 
+
+  def upvote
+    set_problem
+    if current_user.voted_for? @problem
+        current_user.unvote_for @problem
+    else
+        current_user.up_votes @problem
+    end
+  
+  end
+  
+  def downvote
+    set_problem
+     if current_user.voted_for? @problem
+       current_user.unvote_for @problem
+     else
+       current_user.down_votes @problem
+     end
+   end
+
   # POST /problems
   # POST /problems.json
   def create
     @problem = Problem.new(problem_params)
+
     @problem.tag_list = @problem.tag_list[0].to_s.scan(/\w+/)
     @problem.status = "Open"
-    @problem.user_id = current_user.id
+    @problem.user = current_user 
+
     respond_to do |format|
       if @problem.save
         format.html { redirect_to @problem, notice: 'Problem wasPay attention you need to add parse: true as option in this case. successfully created.' }
@@ -70,10 +92,6 @@ class ProblemsController < ApplicationController
 
   private
 
-  def add_tag
-    @problem = problem.find(params[:id])
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_problem
     @problem = Problem.find(params[:id])
@@ -83,4 +101,5 @@ class ProblemsController < ApplicationController
   def problem_params
     params.require(:problem).permit(:status, :category_id, :title, :description, :user_id, :status, :tag_list)
   end
+
 end

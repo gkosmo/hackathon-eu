@@ -4,7 +4,12 @@
   <strong>Status:</strong>
   <%= @problem.status %>
 </p>
-
+ <h6> <%= @problem.get_upvotes.size %>:
+ <%= link_to '<', upvote_problem_path(@problem), method: :post %>
+ </h6>
+ <h6>
+ <%= link_to '>', downvote_problem_path(@problem), method: :post %> 
+  <%= @problem.get_downvotes.size %>: ></h6>
 <p>
   <strong>Category:</strong>
   <%= @problem.category. title %>
@@ -25,10 +30,18 @@
   <%= @problem.user.email %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @problem.status %>
-</p>
+
+<% @problem.comments.each do |comment| %>
+ <p> <%= comment.description %> </p>
+ <h6> <%= comment.get_upvotes.size %>: < </h6> <%= link_to '<', upvote_comment_path(comment), method: :post, remote: true %>
+
+  <h6> <%= comment.get_downvotes.size %>: ></h6><%= link_to '>', downvote_comment_path(comment), method: :post, remote: true %>
+
+<% end %>
+
+
+<%= render 'comments/form', comment: Comment.new, problem: @problem %>
+
 
 <p>
   <strong>Tags:</strong>

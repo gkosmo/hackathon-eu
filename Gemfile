@@ -6,8 +6,10 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.2.0'
+gem 'rails'
 gem 'redis'
+gem 'acts_as_votable', '~> 0.12.0'
+gem "chartkick"
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
