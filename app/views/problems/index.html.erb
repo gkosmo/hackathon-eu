@@ -1,43 +1,42 @@
 <div class= "container">
-
-<p id="notice"><%= notice %></p>
-
-<h1>Problems</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Category</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Status</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @problems.each do |problem| %>
+  <p id="notice"><%= notice %></p>
+  <h1>Problems</h1>
+  <table>
+    <thead>
       <tr>
-        <td><%= problem.status %></td>
-        <td><%= problem.category.title %></td>
-        <td><%= problem.title %></td>
-        <td><%= problem.description %></td>
-        <td><%= problem.user.email %></td>
-        <td><%= problem.status %></td>
-        <td><%= problem.tag_list %></td>
-        <td><%= link_to 'Show', problem %></td>
-        <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
-        <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Status</th>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Tags</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Problem', new_problem_path %>
-
+    </thead>
+    <tbody>
+      <% @problems.each do |problem| %>
+        <tr>
+          <td><%= problem.status %></td>
+          <td><%= problem.category.title %></td>
+          <td><%= problem.title %></td>
+          <td><%= problem.description %></td>
+          <td><%= problem.user.email %></td>
+          <td><%= problem.status %></td>
+          <td><%= problem.tag_list %></td>
+          <td><%= link_to 'Show', problem %></td>
+          <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
+          <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Problem', new_problem_path %>
+  <%= form_tag problems_path, method: :get do %>
+    <div class="search-bar">
+      <%= text_field_tag :query, params[:query], placeholder: "What are you searching for?", autocomplete:"off" %>
+    </div>
+  <% end %>
 </div>
+x

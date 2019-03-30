@@ -6,9 +6,20 @@ class Problem < ApplicationRecord
 
   acts_as_votable
 
+  include PgSearch
 
-  def self.by_countries
+  pg_search_scope :global_search,
+                  against: %i[title description],
+                  associated_against: {
+                    category: [:title],
+                    comments: [:description],
+                    tags: [:name]
+                  },
+                  using: {
+                    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+                  }
 
+ def self.by_countries
     url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
     page_json =  HTTParty.get(url)
      countries = JSON.parse(page_json.body)
@@ -18,6 +29,5 @@ class Problem < ApplicationRecord
          countries_name_list[country['name']]  =  Problem.tagged_with( [ country['name']&.downcase, country['altSpellings'].map(&:downcase), transl ].flatten, :any => true ).count 
      end
     countries_name_list
-
   end
 end
