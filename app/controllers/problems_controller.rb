@@ -55,7 +55,7 @@ class ProblemsController < ApplicationController
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem wasPay attention you need to add parse: true as option in this case. successfully created.' }
+        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
         format.json { render :show, status: :created, location: @problem }
       else
         format.html { render :new }
