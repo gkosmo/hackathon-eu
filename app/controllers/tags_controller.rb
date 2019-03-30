@@ -5,7 +5,12 @@ class TagsController < ApplicationController
 
   def show
     @tag =  ActsAsTaggableOn::Tag.find(params[:id])
-    @posts = Post.tagged_with(@tag.name)
+  end
+
+  def destroy
+    @tag =  ActsAsTaggableOn::Tag.find(params[:id])
+    @tag.destroy
+    redirect_to root
   end
 
 end

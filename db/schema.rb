@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_03_30_160334) do
+ActiveRecord::Schema.define(version: 2019_03_30_160903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_profiles", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_admin_profiles_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -78,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_03_30_160334) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -96,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_03_30_160334) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "admin_profiles", "users"
   add_foreign_key "comments", "problems"
   add_foreign_key "comments", "users"
   add_foreign_key "problems", "categories"
