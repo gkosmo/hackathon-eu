@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'problems#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+   get 'analytics', to: "pages#analytics"
 resources :problems
 resources :tags, only: [:index, :show]
 

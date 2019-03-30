@@ -10,14 +10,13 @@ gem 'rails'
 gem 'redis'
 gem 'acts_as_votable', '~> 0.12.0'
 gem "chartkick"
-
+gem 'httparty'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
