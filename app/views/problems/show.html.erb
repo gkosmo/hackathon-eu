@@ -7,7 +7,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @problem.category %>
+  <%= @problem.category. title %>
 </p>
 
 <p>
@@ -22,12 +22,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @problem.user %>
+  <%= @problem.user.email %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @problem.status %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @problem.tag_list %>
 </p>
 
 <%= link_to 'Edit', edit_problem_path(@problem) %> |
