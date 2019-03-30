@@ -1,15 +1,20 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_problem, only: %i[show edit update destroy]
 
   # GET /problems
   # GET /problems.json
   def index
-    @problems = Problem.all
+    if params[:query].present?
+      @problems = Problem.tagged_with(params[:query])
+    else
+      @problems = Problem.all
+    end
   end
 
   # GET /problems/1
   # GET /problems/1.json
   def show
+    @problem = Problem.find(params[:id])
   end
 
   # GET /problems/new
@@ -45,11 +50,14 @@ class ProblemsController < ApplicationController
   # POST /problems.json
   def create
     @problem = Problem.new(problem_params)
+
+    @problem.tag_list = @problem.tag_list[0].to_s.scan(/\w+/)
+    @problem.status = "Open"
     @problem.user = current_user 
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
+        format.html { redirect_to @problem, notice: 'Problem wasPay attention you need to add parse: true as option in this case. successfully created.' }
         format.json { render :show, status: :created, location: @problem }
       else
         format.html { render :new }
@@ -83,13 +91,15 @@ class ProblemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_problem
-      @problem = Problem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def problem_params
-      params.require(:problem).permit(:status, :category_id, :title, :description, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_problem
+    @problem = Problem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def problem_params
+    params.require(:problem).permit(:status, :category_id, :title, :description, :user_id, :status, :tag_list)
+  end
+
 end
