@@ -21,10 +21,31 @@ class ProblemsController < ApplicationController
   def edit
   end
 
+
+  def upvote
+    set_problem
+    if current_user.voted_for? @problem
+        current_user.unvote_for @problem
+    else
+        current_user.up_votes @problem
+    end
+  
+  end
+  
+  def downvote
+    set_problem
+     if current_user.voted_for? @problem
+       current_user.unvote_for @problem
+     else
+       current_user.down_votes @problem
+     end
+   end
+
   # POST /problems
   # POST /problems.json
   def create
     @problem = Problem.new(problem_params)
+    @problem.user = current_user 
 
     respond_to do |format|
       if @problem.save
@@ -69,6 +90,6 @@ class ProblemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def problem_params
-      params.require(:problem).permit(:status, :category_id, :title, :description, :user_id, :status)
+      params.require(:problem).permit(:status, :category_id, :title, :description, :status)
     end
 end
