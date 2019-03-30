@@ -1,0 +1,26 @@
+
+
+<%= simple_form_for 'problem', url: problems_url do |f| %>
+  <div class="form-inputs">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+
+    <%= f.text_field :description %>
+    <%= f.collection_select( :category_id, Category.all, :id, :title , prompt: true) %>
+    <%= f.text_field :tag_list %>
+    <%= f.input :url_feedback, as: :hidden %>
+    <%= f.input :feedback, value: true, as: :hidden%>
+    <%#= f.input :status %>
+    <%#= f.association :user %>
+    <%#= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<script>  
+  document.querySelector('#problem_url_feedback').value = window.location.href
+</script>
