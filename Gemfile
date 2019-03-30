@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.2.0'
 gem 'redis'
 gem 'acts_as_votable', '~> 0.12.0'
+gem "chartkick"
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
