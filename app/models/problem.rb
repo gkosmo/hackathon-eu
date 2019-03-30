@@ -15,7 +15,6 @@ class Problem < ApplicationRecord
      countries_name_list = { }
      countries.each do  |country| 
          transl = country['translations'].map{|k, v|  v.downcase } 
-         p transl
          countries_name_list[country['name']]  =  Problem.tagged_with( [ country['name']&.downcase, country['altSpellings'].map(&:downcase), transl ].flatten, :any => true ).count 
      end
     countries_name_list
