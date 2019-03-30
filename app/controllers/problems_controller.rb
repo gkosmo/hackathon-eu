@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
   # GET /problems.json
   def index
     if params[:query].present?
-      @problems = Problem.tagged_with(params[:query])
+      @problems = Problem.global_search(params[:query])
     else
       @problems = Problem.all
     end
