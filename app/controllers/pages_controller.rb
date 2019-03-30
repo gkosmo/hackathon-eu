@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def analytics
+    @problem_countries = Problem.by_countries 
+  end
 end

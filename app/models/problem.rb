@@ -5,4 +5,20 @@ class Problem < ApplicationRecord
   has_many :comments
 
   acts_as_votable
+
+
+  def self.by_countries
+
+    url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
+    page_json =  HTTParty.get(url)
+     countries = JSON.parse(page_json.body)
+     countries_name_list = { }
+     countries.each do  |country| 
+         transl = country['translations'].map{|k, v|  v.downcase } 
+         p transl
+         countries_name_list[country['name']]  =  Problem.tagged_with( [ country['name']&.downcase, country['altSpellings'].map(&:downcase), transl ].flatten, :any => true ).count 
+     end
+    countries_name_list
+
+  end
 end
