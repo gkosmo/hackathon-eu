@@ -24,7 +24,7 @@
   </p>
   <p>
     <strong>User:</strong>
-    <%= @problem.user.email %>
+    <%= @problem.user&.email %>
   </p>
   <% @problem.comments.each do |comment| %>
     <p> <%= comment.description %> </p>
