@@ -12,3 +12,12 @@
 @import "components/index";
 @import "pages/index";
 @import "components/form";
+
+@font-face {
+    font-family: 'dosisextrabold';
+    src: url('dosis-extrabold-webfont.woff2') format('woff2'),
+         url('dosis-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
