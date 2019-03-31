@@ -5,14 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "faker"
+Follow.destroy_all
+
 Comment.destroy_all
 Problem.destroy_all
 Category.destroy_all
-
 travel = Category.create!(title: "Travel within the Union")
-Category.create!(title: "Work and retirement within the Union")
+work = Category.create!(title: "Work and retirement within the Union")
 Category.create!(title: "Vehicles in the Union")
-Category.create!(title: "Residence in another Member State")
+other_state = Category.create!(title: "Residence in another Member State")
 Category.create!(title: "Education or traineeship in another Member State")
 Category.create!(title: "Healthcare")
 Category.create!(title: "Citizens' and family rights")
@@ -64,6 +66,42 @@ html_doc.search('.question-list li').each do |element|
 end
 
 
+url = "https://europa.eu/youreurope/citizens/work/professional-qualifications/regulated-professions/faq/index_en.htm"
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: work)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['professional qualifation', 'regulated professions', 'employment', "work"])
+    problem_1.save
+end
+url = "https://europa.eu/youreurope/citizens/work/retire-abroad/state-pensions-abroad/faq/index_en.htm"
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: work)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['professional qualifation', 'regulated professions', 'employment', "work"])
+    problem_1.save
+end
+def build_comment 
+    comment = [ Faker::Books::Dune.quote, Faker::Movies::StarWars.quote,  Faker::Movies::BackToTheFuture.quote].shuffle.join(' ')
+
+end
+
+120.times do
+    Problem.all.sample.comments.create!(description: build_comment, user: users.sample) 
+end
+
+
+
+
 url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
 page_json =  HTTParty.get(url)
  countries = JSON.parse(page_json.body)
@@ -77,3 +115,8 @@ page_json =  HTTParty.get(url)
         problem.save
     end
  end
+
+ Comment.all.each do |comment|
+    comment.update created_at: Faker::Time.backward(200, :evening)
+  
+end

@@ -1,1 +1,26 @@
-<%= geo_chart @problem_countries,  library: { region: '150' } %>
+<div class="analytics-container">
+    <div>
+        <h2> Number of issues tagged  per country </h2>
+    
+    <%= geo_chart @problem_countries,  library: { region: '150' }, width: '50vw;' %>
+    </div>
+    <div>
+    <h2> Number of Issues per categories </h2>
+         <%= pie_chart @pie_data, width: '50vw;' %>
+    </div>
+     
+     
+    <% Category.all.each do |category| %>
+     <div> 
+       <%  if category.comments.empty? %>
+        <h2> There's been no comments for <%= category.title%> questions </h2>
+        <% else %>
+        <h2> Number of comments per month for <%= category.title %> </h2>
+        <%=  column_chart category.comments.group_by_month(:created_at).count, width: '50vw;' %>
+        <% end %>
+       </div>
+    <% end %>   
+ 
+
+</div>
+

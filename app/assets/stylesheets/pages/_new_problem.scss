@@ -5,4 +5,25 @@
   .slide.slide--current {
     display: block;
   }
-  
+ 
+.analytics-container { 
+  display: grid;
+}
+
+
+.analytics-container div{   
+  margin: 2vw;
+  align-items: center;
+}
+  @media screen and (min-width: 768px) { 
+    .analytics-container  { 
+        display: grid; 
+        
+        grid-template-columns: 1fr;
+        padding: 2vh;
+        align-items: center;
+        }
+        .analytics-container div{   
+          margin: 2vw;
+      }
+      }
