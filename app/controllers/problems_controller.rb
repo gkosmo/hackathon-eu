@@ -55,7 +55,7 @@ class ProblemsController < ApplicationController
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
+        format.html { redirect_to @problem, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @problem }
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class ProblemsController < ApplicationController
     end
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
+        format.html { redirect_to @problem, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @problem }
       else
         format.html { render :edit }
@@ -87,7 +87,7 @@ class ProblemsController < ApplicationController
   def destroy
     @problem.destroy
     respond_to do |format|
-      format.html { redirect_to problems_url, notice: 'Problem was successfully destroyed.' }
+      format.html { redirect_to problems_url, notice: 'Question was successfully deleted.' }
       format.json { head :no_content }
     end
   end
