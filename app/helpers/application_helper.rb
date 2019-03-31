@@ -8,4 +8,10 @@ module ApplicationHelper
     def user_downvote_color(user, votable) 
         user.voted_down_on?(votable) ? 'ThumbsDown_icon_blue.png' : 'ThumbsDown_icon.png' 
     end 
+
+    def follow_problem(user, problem)
+        problems = user.follows.map(&:problem)
+        problems.select { |v| v == problem}.first
+        byebug
+    end
 end

@@ -3,7 +3,7 @@ class Problem < ApplicationRecord
   belongs_to :user, optional: true
   acts_as_taggable # Alias for acts_as_taggable_on :tags
   has_many :comments
-
+  has_many :follows
   acts_as_votable
 
   include PgSearch
