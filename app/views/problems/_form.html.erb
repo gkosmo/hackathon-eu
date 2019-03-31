@@ -2,28 +2,24 @@
   <%= simple_form_for(problem) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <div class="form-inputs">
-      <div data-target="problem-new.slide" class="slide " >
-        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"} %>
+    <div class="form-inputs" >
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Start your question with “What”, “How”, “Why”, etc." %>
       </div>
-      <div data-target="problem-new.slide" class="slide">
-        <button data-action="slideshow#previous">←</button>
-        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next"}   %>
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next" }, placeholder: "Describe your problem." %>
       </div>
-      <div data-target="problem-new.slide" class="slide">
-        <button data-action="slideshow#previous">←</button>
-        <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Select a the relevant category."  %>
       </div>
-      <div data-target="problem-new.slide" class="slide">
-        <button data-action="slideshow#previous">←</button>
-        <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Add one or more tag(s)."  %>
       </div>
      
-      <div data-target="problem-new.slide" class="slide" >
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
         <div class="form-actions">
           <%= f.button :submit %>
         </div>
-        <button id="button-previous" data-action="slideshow#previous">←</button>
       </div>
       </div>
     <% end %>
