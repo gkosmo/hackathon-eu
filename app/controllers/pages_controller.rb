@@ -7,4 +7,8 @@ class PagesController < ApplicationController
   def analytics
     @problem_countries = Problem.by_countries 
   end
+
+  def dashboard 
+    
+  end
 end

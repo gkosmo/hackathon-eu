@@ -6,4 +6,4 @@ function replacefollow(follow_id, inner_html){
 
 }
 
-replacefollow("follow-votes", "<%= j render 'follow_votes', problem: @problem %> ")    
+replacefollow("follow-votes-<%= @problem.id %>", "<%= j render 'follow_votes', problem: @problem %> ")    

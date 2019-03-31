@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   acts_as_voter
   has_many :follows
+  has_many :problems
+  has_many :comments
 end
