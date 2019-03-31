@@ -43,6 +43,10 @@
 .modal-body{
 text-align: left;
 }
+.last{
+  text-align: left;
+  padding: 10px 0 0 15px;
+}
 
 .row {
 display: flex;
@@ -50,7 +54,21 @@ flex-direction: row;
 width: 100%;
 }
 
-ul .tips-list{
-list-style-image: asset_path('Check-icon.png');
+.tips-list{
+  list-style: none;
+  padding-left: 5px;
+  padding-top: 10px;
 }
+
+i{
+  margin: 0 15px 0 15px;
+  color:$blue;
+}
+p{
+  i{
+    margin: 0 5px 0 5px;
+    color: inherit;
+  }
+}
+
 

@@ -39,17 +39,17 @@
           </div>
           <div>
             <ul class="tips-list">
-              <li>Make sure your question hasn't been asked before</li>
-              <li>For your question, try to keep it short and clear</li>
-              <li>Try to make sure there aren't an abundance of grammatical errors</li>
+              <li> <i class="far fa-check-circle"></i>Make sure your question hasn't been asked before</li>
+              <li><i class="far fa-check-circle"></i>For your question, try to keep it short and clear</li>
+              <li><i class="far fa-check-circle"></i>Try to make sure there aren't an abundance of grammatical errors</li>
             </ul>
           </div>
         </div>
         <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
         <%= render 'problems/form', problem: Problem.new %>
         <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
-        <div class="modal-body">
-          <p style="padding: 0 0 0 25px;">Optional : add a file for more context.</p>
+        <div class="modal-body last">
+          <p class="optional" style="padding: 0 0 0 12px; font-size: 14px;"><i class="fas fa-link"></i>Optional : add a file for more context.</p>
         </div>
 
       </div>
