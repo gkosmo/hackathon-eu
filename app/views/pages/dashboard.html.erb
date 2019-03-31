@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+    <div class="tabs">
+        <ul> 
+ 
+            <li id="tab-created"> Questions You've created </li>
+            <li id="tab-commented"> Questions You've commented </li>
+            <li id="tab-following"> Questions You're following </li>
+            
+        </ul>
+    </div>
+
+
+    <div class="created">
+     <div style="margin: 5vw;"> 
+      Questions You've created :
+      </div> 
+      <% current_user.problems.each do |problem| %>
+            <%= render 'problems/problem_card', problem: problem %>
+      <% end %>
+
+    </div>
+    <div class="commented">
+     <div style="margin: 5vw;"> 
+      Questions You've commented :
+      </div> 
+      <% current_user.comments.map(&:problem).uniq.each do |problem| %>
+            <%= render 'problems/problem_card', problem: problem %>
+      <% end %>
+
+    </div>
+
+    <div class="followed">
+     <div style="margin: 5vw;"> 
+      Questions You're following :
+      </div> 
+      <% current_user.follows.map(&:problem).uniq.each do |problem| %>
+            <%= render 'problems/problem_card', problem: problem %>
+      <% end %>
+
+    </div>
+
+</div>

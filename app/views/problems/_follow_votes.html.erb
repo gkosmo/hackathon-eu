@@ -2,13 +2,13 @@
       <%= link_to follow_path( follow_problem(current_user, problem) ), method: :delete, remote: true  do %>
         <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px; background-color: 'yellow';" %>
       <% end %>
-    <p style="margin: 0px; color: yellow;"><%= @problem.follows.count %> </p>
+    <p style="margin: 0px; color: yellow;"><%= problem.follows.count %> </p>
 
     <% else %>
       <%= link_to follows_path(follow: { problem_id: problem.id }), method: :post, remote: true do %>
        <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px; background-color: 'black';" %>
       <% end %>
-          <p style="margin: 0px; color: black"><%= @problem.follows.count %> </p>
+          <p style="margin: 0px; color: black"><%= problem.follows.count %> </p>
 
     <% end %>
 

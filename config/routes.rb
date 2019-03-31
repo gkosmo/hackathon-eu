@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   root to: 'problems#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    get 'analytics', to: "pages#analytics"
+   get 'dashboard', to: "pages#dashboard"
   
   get '/widgets/:template', to: 'widgets#show'
 

@@ -2,42 +2,7 @@
   <p id="notice"><%= notice %></p>
 
   <% @problems.each do |problem| %>
-    <div style="background-color: white; width: 60%; border: 1px solid #E2E2E2; margin: 0px 0px 5px 10%; padding: 15px;">
-      <div style="font-size: 14px; color: #949494">Question - <%= problem.category.title %></div>
-      <%= link_to problem_path(problem) do  %>
-        <div style="font-family: 'Times New Roman', Times, serif; font-size: 24px; font-weight: bold; margin-bottom: 10px; color: black; text-decoration: none"><%= problem.title %></div>
-      <% end %>
-      <div style="display: flex;">
-        <p style="color: #949494; font-size: 12px; font-weight: bold; margin-right: 5px;">No answer given -</p>
-        <p style="color: #949494; font-size: 12px;">Last viewed <%= rand(8) + 1 %>h  ago</p>
-      </div>
-      <div style="display:flex; align-items: flex-end"> 
-        <%= image_tag "Answer_icon_highlighted.png", :style => "width: 30px; height: 30px; margin-right: 10px" %>
-        <p style="margin: 0px;">Answer</p>
-        <div style="width: 50px;"></div>
-        <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
-        <p style="margin: 0px;">Follow</p>
-        <p style="margin: 0px 0px 0px 10px;">2</p>
-        <div style="width: 600px;"></div>
-        <%= image_tag "Ignore_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
-        <%= image_tag "Share_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
-        <%= image_tag "More_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
-      </div>
-      <div style="height: 20px;"></div>
-      <div class="tagsBox">
-        <% problem.tag_list.each do |tag| %>
-          <div class="tag">
-            <%= image_tag "tag.png", :style => "width: 20px; height: 20px" %>
-            <%= tag %>
-            <%= link_to problem_tags_path(tag),
-              method: :delete,
-              data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-times" style="color: grey"></i>
-            <% end %>
-          </div>
-        <% end%>
-      </div>
-    </div>
+    <%= render 'problem_card', problem: problem%>
   <% end %>
 </div>
 <div style="position: absolute; top: 15%; left: 70%; right: 5%;">
