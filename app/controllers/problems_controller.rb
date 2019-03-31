@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: %i[show edit update destroy]
-
+  skip_before_action :authenticate_user!
   # GET /problems
   # GET /problems.json
   def index
