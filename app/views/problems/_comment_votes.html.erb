@@ -1,0 +1,4 @@
+ <%= link_to image_tag(user_upvote_color(current_user, comment), :style => "width: 20px; height: 20px; margin-right: 5px;"), upvote_comment_path(comment), method: :post, remote: true %>
+      <%= comment.get_upvotes.size %>
+      <%= link_to image_tag(user_downvote_color(current_user, comment), :style => "width: 20px; height: 20px; margin-right: 5px; margin-left: 5px;"), downvote_comment_path(comment), method: :post, remote: true %>
+      <%= comment.get_downvotes.size %>

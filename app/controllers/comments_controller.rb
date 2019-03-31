@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
       if @comment.save!
         format.html { redirect_to @problem, notice: 'Comment was successfully created.' }
         format.json { render "problems/show", status: :created, location: @problem }
+        format.js { }
       else
         format.html { render "problems/show" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

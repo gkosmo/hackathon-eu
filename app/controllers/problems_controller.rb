@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: %i[show edit update destroy]
-
+  skip_before_action :authenticate_user!
   # GET /problems
   # GET /problems.json
   def index
@@ -42,11 +42,13 @@ class ProblemsController < ApplicationController
     else
       current_user.down_votes @problem
     end
-   end
+  end
 
   # POST /problems
   # POST /problems.json
   def create
+    response.headers.delete "X-Frame-Options"
+
     @problem = Problem.new(problem_params)
 
     @problem.tag_list = @problem.tag_list[0].to_s.scan(/\w+/)
