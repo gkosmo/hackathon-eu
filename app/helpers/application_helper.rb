@@ -12,6 +12,6 @@ module ApplicationHelper
     def follow_problem(user, problem)
         problems = user.follows.map(&:problem)
         problems.select { |v| v == problem}.first
-        byebug
+        
     end
 end
