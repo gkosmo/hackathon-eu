@@ -1,0 +1,9 @@
+function replacefollow(follow_id, inner_html){ 
+    let wrapper = document.getElementById(follow_id)
+    console.log(inner_html)
+    wrapper.innerHTML = inner_html
+    console.log(wrapper)
+
+}
+
+replacefollow("follow-votes", "<%= j render 'follow_votes', problem: @problem %> ")    

@@ -10,8 +10,8 @@ module ApplicationHelper
     end 
 
     def follow_problem(user, problem)
-        problems = user.follows.map(&:problem)
-        problems.select { |v| v == problem}.first
+        problems = user.follows
+        problems.select { |v| v.problem == problem}.first
         
     end
 end
