@@ -26,11 +26,17 @@ class FollowsController < ApplicationController
   def create
     @follow = Follow.new(follow_params)
     @follow.user = current_user
+    @problem = Problem.find @follow.problem_id
+    @problem.reload 
+    current_user.reload
     respond_to do |format|
       if @follow.save
         format.html { redirect_to @follow, notice: 'Follow was successfully created.' }
         format.json { render :show, status: :created, location: @follow }
+        format.js
       else
+        format.js
+
         format.html { render :new }
         format.json { render json: @follow.errors, status: :unprocessable_entity }
       end
@@ -54,8 +60,14 @@ class FollowsController < ApplicationController
   # DELETE /follows/1
   # DELETE /follows/1.json
   def destroy
+    @problem = Problem.find @follow.problem_id
+
     @follow.destroy
+    @problem.reload 
+    current_user.reload
     respond_to do |format|
+      format.js
+
       format.html { redirect_to follows_url, notice: 'Follow was successfully destroyed.' }
       format.json { head :no_content }
     end
