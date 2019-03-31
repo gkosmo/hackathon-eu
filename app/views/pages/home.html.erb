@@ -1,4 +1,6 @@
 <div class="homeContainer">
+<%= form_for 'query',  url: problems_path, method: :get do %>
     <%= text_field_tag :query, params[:query], placeholder: "Ask your question here", autocomplete:"off" %>
+    <% end %>
 </div>
 <div class="homeSlogan">Ask EU. Be Heard.</div>
