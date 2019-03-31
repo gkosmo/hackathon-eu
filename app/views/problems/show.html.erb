@@ -21,9 +21,14 @@
           </div>
         <% end%>
         </div>
-  <div style="display:flex; align-items: flex-end"> 
-    <%= image_tag "Answer_icon_highlighted.png", :style => "width: 30px; height: 30px; margin-right: 10px" %>
-    <p style="margin: 0px;">Edit</p>
+  <div style="display:flex; align-items: flex-end">
+    <% if current_user && current_user == @problem.user %>
+           <button  data-toggle="modal" data-target="#addQuestion">
+
+           <%= image_tag "Answer_icon_highlighted.png", :style => "width: 30px; height: 30px; margin-right: 10px" %>
+     </button>
+        <p style="margin: 0px;">Edit</p>
+    <% end %>
     <div style="width: 50px;"></div>
     <div id="follow-votes-<%= @problem.id %>">
       <%= render 'follow_votes', problem: @problem %>    
@@ -82,3 +87,32 @@
 <div  class="similar-questions" >
   <%= render 'shared/suggestions'%>
 </div>
+
+
+<% if current_user && current_user == @problem.user %>
+  <div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div style="padding: 0 0 0 20px;">
+            <h5>Tips to obtain relevant answers quickly</h5>
+          </div>
+          <div>
+            <ul class="tips-list">
+              <li> <i class="far fa-check-circle"></i>Make sure your question hasn't been asked before</li>
+              <li><i class="far fa-check-circle"></i>For your question, try to keep it short and clear</li>
+              <li><i class="far fa-check-circle"></i>Try to make sure there aren't an abundance of grammatical errors</li>
+            </ul>
+          </div>
+        </div>
+        <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
+        <%= render 'problems/form',  problem: @problem  %>
+        <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
+        <div class="modal-body last">
+          <p class="optional" style="padding: 0 0 0 12px; font-size: 14px;"><i class="fas fa-link"></i>Optional : add a file for more context.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <%end%>
