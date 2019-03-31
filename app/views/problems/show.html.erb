@@ -1,54 +1,96 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
-  <p>
-    <strong>Status:</strong>
-    <%= @problem.status %>
-  </p>
-  <h6> <%= @problem.get_upvotes.size %>:
-    <%= link_to '<', upvote_problem_path(@problem), method: :post %>
-  </h6>
-  <h6>
-    <%= link_to '>', downvote_problem_path(@problem), method: :post %>
-    <%= @problem.get_downvotes.size %>: ></h6>
-  <p>
-    <strong>Category:</strong>
-    <%= @problem.category. title %>
-  </p>
-  <p>
-    <strong>Title:</strong>
-    <%= @problem.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= @problem.description %>
-  </p>
-  <p>
-    <strong>User:</strong>
-    <%= @problem.user&.email %>
-  </p>
-  <% @problem.comments.each do |comment| %>
-    <p> <%= comment.description %> </p>
-    <h6> <%= comment.get_upvotes.size %>: < </h6> <%= link_to '<', upvote_comment_path(comment), method: :post, remote: true %>
-        <h6> <%= comment.get_downvotes.size %>: ></h6>
-        <%= link_to '>', downvote_comment_path(comment), method: :post, remote: true %>
-      <% end %>
-      <%= render 'comments/form', comment: Comment.new, problem: @problem %>
-      <strong>Tags:</strong>
-      <p>
-        <% if @problem.user == current_user %>
-          <% @problem.tag_list.each do |tag| %>
+<div style="height: 20px;"></div>
+<div class="questionShow">
+  <div>
+    <% if @problem.user == current_user %>
+      <div class="tagsBox">
+        <% @problem.tag_list.each do |tag| %>
+          <div class="tag">
+            <%= image_tag "tag.png", :style => "width: 20px; height: 20px" %>
             <%= tag %>
             <%= link_to problem_tag_path(tag),
-            method: :delete,
-            data: { confirm: "Are you sure?" } do %>
-              <i class="far fa-trash-alt"></i>
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-times" style="color: grey"></i>
             <% end %>
-          <% end%>
-          <%= render 'tags/form' %>
-        <% else%>
-          <%= @problem.tag_list %>
+          </div>
         <% end%>
-      </p>
-      <%= link_to 'Edit', edit_problem_path(@problem) %> |
-      <%= link_to 'Back', problems_path %>
-    </div>
+      </div>
+      <%= render 'tags/form' %>
+    <% else%>
+      <%= @problem.tag_list %>
+    <% end%>
+  </div>
+
+  <div class="questionShowTitle">
+    <%= @problem.title %>
+  </div>
+  <div style="display:flex; align-items: flex-end"> 
+    <%= image_tag "Answer_icon_highlighted.png", :style => "width: 30px; height: 30px; margin-right: 10px" %>
+    <p style="margin: 0px;">Edit</p>
+    <div style="width: 50px;"></div>
+    <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
+    <p style="margin: 0px;">2</p>
+    <div style="width: 600px;"></div>
+    <%= image_tag "Ignore_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
+    <%= image_tag "Share_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+    <%= image_tag "More_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+  </div>
+  <div style="display: flex; margin-top: 10px;">
+    <p style="color: #949494; font-size: 14px;">Questions -</p>
+    <div style="color: #949494; font-size: 14px;"><%= @problem.category. title %></div>
+    <h6 style="margin-left: auto;"> 
+      <%= link_to image_tag("ThumbsUp_icon.png", :style => "width: 20px; height: 20px"), upvote_problem_path(@problem), method: :post %>
+      <%= @problem.get_upvotes.size %>
+      <%= link_to image_tag("ThumbsDown_icon.png", :style => "width: 20px; height: 20px"), downvote_problem_path(@problem), method: :post %>
+      <%= @problem.get_downvotes.size %>
+    </h6>
+  </div>
+  <div style="display: flex;">
+    <p style="color: #949494; font-size: 14px; font-weight: bold; margin-right: 5px;">No answer given -</p>
+    <p style="color: #949494; font-size: 14px;">Last viewed 1s ago</p>
+  </div>
+  <div style="color: #434343;">
+    <%= @problem.description %>
+  </p>
+
+
+</div>
+
+  <%
+=begin%>
+ <p>
+    <strong>Status:</strong>
+    <%= @problem.status %>
+  </p> 
+<%
+=end%>
+
+  <div style="width: 100%; height: 1px; background-color: #949494"></div>
+ 
+
+  <% @problem.comments.each do |comment| %>
+    <p style="margin-top: 30px;"> <%= comment.description %> </p>
+    <h6 style="display: flex;"> 
+      <%= link_to image_tag("ThumbsUp_icon.png", :style => "width: 20px; height: 20px; margin-right: 5px;"), upvote_comment_path(comment), method: :post, remote: true %>
+      <%= comment.get_upvotes.size %>
+      <%= link_to image_tag("ThumbsDown_icon.png", :style => "width: 20px; height: 20px; margin-right: 5px; margin-left: 5px;"), downvote_comment_path(comment), method: :post, remote: true %>
+      <%= comment.get_downvotes.size %>
+      <div style="margin-left: auto">
+        <%= image_tag "Share_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+        <%= image_tag "More_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+      </div>
+    </h6>
+    <div style="width: 100%; height: 1px; background-color: #949494"></div>
+    <% end %>
+
+      <%= render 'comments/form', comment: Comment.new, problem: @problem %>
+      <%
+=begin%>
+ <%= link_to 'Edit', edit_problem_path(@problem) %> |
+      <%= link_to 'Back', problems_path %> 
+<%
+=end%>
+
+
+</div>
