@@ -50,6 +50,18 @@ html_doc.search('.question-list li').each do |element|
     p problem_1.comments.create!(description: answer, user: users.sample )
     
 end
+url = "https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/faq/index_en.htm"
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: travel)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['transport disability', 'reduced mobility'])
+    problem_1.save
+end
 
 
 url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
@@ -62,5 +74,6 @@ page_json =  HTTParty.get(url)
     problems.each do |problem| 
         
         problem.tag_list.add(tag)
+        problem.save
     end
  end
