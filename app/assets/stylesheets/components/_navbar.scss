@@ -1,12 +1,110 @@
-.navbar-lewagon {
+.navbar {
   justify-content: space-between;
   background: white;
+  padding: 13px 15vw 0 15vw;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 70px;
+  box-shadow: 0px 5px 5px 0px rgb(219, 219, 219);
+  width: 100vw;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-logo{
+  width: 120px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.items-list {
+   display: flex;
+  flex-direction: row;
+  li{
+  font-weight:bold;
+  display: inline;
+  color: $gray;
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 }
+
+.button-blue{
+  display: inline-block;
+  margin-top: 3px;
+  padding: 6px 25px 6px 25px;
+  text-align: center;
+  line-height: initial;
+  color: white !important;
+  background-color: $blue;
+  border: solid 1px $blue;
+  border-radius: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  height: 30px;
+  text-decoration: none;
+    
+}
+  
+.button-blue:hover{
+  background-color: $yellow;
+  border: solid 1px $yellow;
+  color: $blue;
+  text-decoration: none;
+}
+
+.search-bar-nav{
+  margin: 3px 25px 0 25px;
+  width: 350px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+// .navbar .navbar-expand-sm .navbar-light .navbar-lewagon{
+// }
+
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 110px;
+//   padding: 0 0 10px 0;
+// }
+// .search-bar{
+//   margin-top: 120x;
+// }
+
+// .search-bar-nav{
+//   width: 350px;
+//   font-family: Arial, Helvetica, sans-serif;
+// }
+
+// .navbar-logo img{
+//  width: 40px;
+// }
+
+// .nav-link {
+//   color: $gray !important;
+//   font-family: Arial, Helvetica, sans-serif;
+// }
+
+// .nav-item{
+//   .button-blue{
+//     margin-top: 50px;
+//     padding: 5px 25px 5px 25px;
+//     color: white;
+//     background-color: $blue;
+//     border: solid 1px $blue;
+//     border-radius: 5%;
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-weight: 550;
+//     height: 30px;
+//     text-decoration: none;
+//   }
+// }
+
+// .button-blue:hover{
+//   background-color: $yellow;
+//   border: solid 1px $yellow;
+//   color: $blue;
+//   text-decoration: none;
+// }
