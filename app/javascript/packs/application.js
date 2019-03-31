@@ -32,8 +32,8 @@ if(dashboard){
         e.preventDefault();
         cleanAll();
          program_div.classList.remove('hidden')
-        program_tab.classList.add('underlines')
-        visual_tab.classList.remove('under')
+         e.currentTarget.classList.add('underlines')
+
     })
     visual_tab.addEventListener('click', function(e){
         e.preventDefault();
