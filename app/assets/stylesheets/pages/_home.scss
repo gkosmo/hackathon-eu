@@ -1,1 +1,34 @@
 // Specific CSS for your home-page
+.tag {
+    background-color: #E2E2E2;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 0px 10px 10px 0px;
+}
+
+.tagsBox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.questionShowTitle {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-inputs label {
+    margin-top: 10px;
+    color: #949494;
+}
+.tagSubmitBtn input {
+    color: #949494;
+    padding: 0px;
+    margin: 0px 0px 10px 0px;
+}
+
+.questionShow {
+    width: 70%;
+    margin-left: 10%;
+}
