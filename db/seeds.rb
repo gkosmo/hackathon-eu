@@ -117,6 +117,5 @@ page_json =  HTTParty.get(url)
  end
 
  Comment.all.each do |comment|
-    comment.update created_at: Faker::Time.backward(200, :evening)
-  
+  p  comment.update created_at: Faker::Time.backward(200, :evening)
 end
