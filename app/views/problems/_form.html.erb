@@ -4,20 +4,44 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="form-inputs" >
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
-        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Start your question with “What”, “How”, “Why”, etc." %>
+        <% if f.object.id.nil? %>
+        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Start your question with “What”, “How”, “Why”, etc."  %>
+        <% else %>
+        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"}, value: f.object.title %>
+
+        <% end %>
       </div>
+
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
         <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"} %>
-        <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"} %>
+        <%= f.input :obstacle, input_html: { 'data-action': "keydown->problem-new#next"} %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
-        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next" }, placeholder: "Describe your problem." %>
+        <% if f.object.persisted? %>
+
+        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next" } %>
+        <% else %>
+        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next" } , placeholder: "Describe your problem."%>
+
+       <% end %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <% if f.object.persisted? %>
+          <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+        
+        <% else %>
+
         <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Select a the relevant category."  %>
+        <% end %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <% if f.object.persisted? %>
+                  <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"}%>
+
+        <% else %>
         <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Add one or more tag(s)."  %>
+
+        <% end %>
       </div>
      
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
