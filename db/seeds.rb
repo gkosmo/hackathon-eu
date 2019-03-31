@@ -13,12 +13,12 @@ Problem.destroy_all
 Category.destroy_all
 travel = Category.create!(title: "Travel within the Union")
 work = Category.create!(title: "Work and retirement within the Union")
-Category.create!(title: "Vehicles in the Union")
+vehicles = Category.create!(title: "Vehicles in the Union")
 other_state = Category.create!(title: "Residence in another Member State")
-Category.create!(title: "Education or traineeship in another Member State")
-Category.create!(title: "Healthcare")
-Category.create!(title: "Citizens' and family rights")
-Category.create!(title: "Consumer rights")
+education = Category.create!(title: "Education or traineeship in another Member State")
+health = Category.create!(title: "Healthcare")
+family = Category.create!(title: "Citizens' and family rights")
+consumer = Category.create!(title: "Consumer rights")
 Category.create!(title: "Protection of personnal data")
 Category.create!(title: "Starting, running and closing a business")
 Category.create!(title: "Employees")
@@ -52,7 +52,9 @@ html_doc.search('.question-list li').each do |element|
     p problem_1.comments.create!(description: answer, user: users.sample )
     
 end
+
 url = "https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/faq/index_en.htm"
+
 html_file = open(url).read
 html_doc = Nokogiri::HTML(html_file)
 html_doc.search('.question-list li').each do |element|
@@ -78,6 +80,7 @@ html_doc.search('.question-list li').each do |element|
     problem_1.tag_list.add(['professional qualifation', 'regulated professions', 'employment', "work"])
     problem_1.save
 end
+
 url = "https://europa.eu/youreurope/citizens/work/retire-abroad/state-pensions-abroad/faq/index_en.htm"
 html_file = open(url).read
 html_doc = Nokogiri::HTML(html_file)
@@ -90,6 +93,92 @@ html_doc.search('.question-list li').each do |element|
     problem_1.tag_list.add(['professional qualifation', 'regulated professions', 'employment', "work"])
     problem_1.save
 end
+
+url ="https://europa.eu/youreurope/citizens/vehicles/cars/buying-a-car-abroad/faq/index_en.htm"
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: vehicles)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['car', 'buying', "leasing"])
+    problem_1.save
+end
+
+# url = 'https://europa.eu/youreurope/citizens/education/university/admission-entry-conditions/faq/index_en.htm'
+
+# html_file = open(url).read
+# html_doc = Nokogiri::HTML(html_file)
+# html_doc.search('.question-list li').each do |element|
+#    question =  element.search('.question')[0].text.strip
+#    answer =  element.search('.answer')[0].text.strip
+#     p question
+#     p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: education)
+#     p problem_1.comments.create!(description: answer, user: users.sample )
+#     problem_1.tag_list.add(['admission', 'university', "school"])
+#     problem_1.save
+# end
+
+url = 'https://europa.eu/youreurope/citizens/health/planned-healthcare/right-to-treatment/faq/index_en.htm'
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: health)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['educational records', 'medical procesure', "planned medical treatment"])
+    problem_1.save
+end
+
+url = 'https://europa.eu/youreurope/citizens/health/planned-healthcare/expenses-reimbursements/faq/index_en.htm'
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: health)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['medical procesure', "reimbursements"])
+    problem_1.save
+end
+
+url ='https://europa.eu/youreurope/citizens/family/children/parental-responsibility/faq/index_en.htm'
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: family)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['divorce', "parental responsibility", "custody"])
+    problem_1.save
+end
+
+url = 'https://europa.eu/youreurope/citizens/consumers/shopping/contract-information/faq/index_en.htm'
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: consumer)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['trader', "online payment", "contract"])
+    problem_1.save
+end
+
+
 def build_comment 
     comment = [ Faker::Books::Dune.quote, Faker::Movies::StarWars.quote,  Faker::Movies::BackToTheFuture.quote].shuffle.join(' ')
 
@@ -98,9 +187,6 @@ end
 120.times do
     Problem.all.sample.comments.create!(description: build_comment, user: users.sample) 
 end
-
-
-
 
 url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
 page_json =  HTTParty.get(url)
