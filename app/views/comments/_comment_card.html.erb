@@ -1,0 +1,11 @@
+    <p style="margin-top: 30px;"> <%= comment.description %> </p>
+    <h6 style="display: flex;"> 
+        <div id="comment-votes-<%= comment.id %>">
+          <%= render 'problems/comment_votes', comment: comment %>
+        </div>
+      <div style="margin-left: auto">
+        <%= image_tag "Share_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+        <%= image_tag "More_icon.png", :style => "width: 20px; margin: 0px 10px 5px 0px" %>
+      </div>
+    </h6>
+    <div style="width: 100%; height: 1px; background-color: #949494"></div>

@@ -1,0 +1,4 @@
+ <%= link_to image_tag(user_upvote_color(current_user, problem), :style => "width: 20px; height: 20px;"), upvote_problem_path(@problem), method: :post, remote: true %>
+<%= problem.get_upvotes.size %>
+      <%= link_to image_tag(user_downvote_color(current_user, problem), :style => "width: 20px; height: 20px;"), downvote_problem_path(@problem), method: :post, remote: true %>
+<%= problem.get_downvotes.size %>

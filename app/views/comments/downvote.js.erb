@@ -1,0 +1,9 @@
+function replaceComment(comment_id, inner_html){ 
+    let wrapper = document.getElementById(comment_id)
+    console.log(wrapper)
+    wrapper.innerHTML = inner_html
+    console.log(wrapper)
+
+}
+
+replaceComment("comment-votes-<%=@comment.id%>", "<%= j render 'problems/comment_votes', comment: @comment %> ")
