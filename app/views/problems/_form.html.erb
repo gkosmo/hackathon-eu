@@ -13,8 +13,8 @@
       </div>
 
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
-        <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"} %>
-        <%= f.input :obstacle, input_html: { 'data-action': "keydown->problem-new#next"} %>
+        <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"}, label: " Feedback on EU service" %>
+        <%= f.input :obstacle, input_html: { 'data-action': "keydown->problem-new#next"}, label:"Obstacle to Single Market rights" %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
         <% if f.object.persisted? %>
