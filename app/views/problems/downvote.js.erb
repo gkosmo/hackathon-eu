@@ -1,0 +1,9 @@
+function replaceproblem(problem_id, inner_html){ 
+    let wrapper = document.getElementById(problem_id)
+    console.log(wrapper)
+    wrapper.innerHTML = inner_html
+    console.log(wrapper)
+
+}
+
+replaceproblem("problem-votes-<%=@problem.id%>", "<%= j render 'problem_votes', problem: @problem %> ")    

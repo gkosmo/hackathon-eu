@@ -1,0 +1,9 @@
+function addComment(comment_html){ 
+     let comments_wrapper = document.querySelector('#comments-list')
+    comments_wrapper.insertAdjacentHTML('beforeend', comment_html) 
+    console.log(comment_html)
+    document.querySelector('#comment_description').value = ""
+ } 
+
+console.log("<%= j render 'comment_card', comment: @comment %>")
+addComment("<%= j render 'comment_card', comment: @comment %>")

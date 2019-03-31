@@ -1,64 +1,38 @@
 .navbar {
-  // justify-content: space-between;
-  background: white;
-  padding: 13px 15vw 0 15vw;
-  display: flex;
-  flex-wrap: nowrap;
-  height: 70px;
-  box-shadow: 0px 5px 5px 0px rgb(219, 219, 219);
-  width: 100vw;
-  // flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: 100%;
+  background-color: white;
+}
+.navbarContent {
+  width: 90%;
+  margin-left: 10%;
 }
 
-.navbar-logo{
+.navbar-logo {
   width: 120px;
+  margin-left: 10%;
 }
-
-.items-list {
-  display: flex;
-  flex-direction: row;
-  li{
-  font-weight:bold;
-  display: inline;
-  color: $gray;
-    a{
-      text-decoration: none;
-      color: inherit;
-    }
+.nav-link {
+  color: #949494 !important;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 0 0 5px;
+}
+.navOption{
+  display:flex;
+  margin-right: 10px;
+}
+.search-bar-nav {
+  border: 1px solid #E2E2E2;
+  border-radius: 6px;
+  padding: 0 10px 0 10px;
+}
+.navbarButton {
+  background-color: #004494;
+  border-radius: 6px;
+  p {
+    color: white;
+    margin: 0;
+    padding: 3px 10px 3px 10px;
   }
-}
-
-.button-blue{
-  display: inline-block;
-  margin-top: 3px;
-  padding: 6px 25px 6px 25px;
-  text-align: center;
-  line-height: initial;
-  color: white !important;
-  background-color: $blue;
-  border: solid 1px $blue;
-  border-radius: 5%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  height: 30px;
-  text-decoration: none;
-    
-}
-  
-.button-blue:hover{
-  background-color: $yellow;
-  border: solid 1px $yellow;
-  text-decoration: none;
-  
-}
-
-.search-bar-nav{
-  margin: 3px 25px 0 25px;
-  width: 350px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .modal-dialog{
@@ -67,7 +41,9 @@
 
 // .modal-content{
 //   border-radius: 1%;
+
 // }
+// } 
 
 .modal-body{
 text-align: left;
@@ -82,3 +58,4 @@ text-align: left;
 ul .tips-list{
   list-style-image: asset_path('Check-icon.png');
 }
+
