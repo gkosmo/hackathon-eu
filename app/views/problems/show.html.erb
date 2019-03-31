@@ -29,7 +29,17 @@
     <%= image_tag "Answer_icon_highlighted.png", :style => "width: 30px; height: 30px; margin-right: 10px" %>
     <p style="margin: 0px;">Edit</p>
     <div style="width: 50px;"></div>
-    <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
+    <% if follow_problem(current_user, @problem) %>
+      <%= link_to follows_path(follow_problem(current_user, @problem)), params: { follow: { problem_id: @problem.id } }, method: :delete do %>
+        
+        <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px; background-color: 'yellow';" %>
+      <% end %>
+
+    <% else %>
+      <%= link_to follows_path() ,follow: { problem_id: @problem.id } , method: :post do %>
+       <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px; background-color: 'black';" %>
+      <% end %>
+    <% end %>
     <p style="margin: 0px;">2</p>
     <div style="width: 600px;"></div>
     <%= image_tag "Ignore_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px" %>
