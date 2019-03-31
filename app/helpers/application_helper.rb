@@ -13,4 +13,8 @@ module ApplicationHelper
         problems = user&.follows
         problems&.select { |v| v.problem == problem}&.first
     end
-end
+
+    def suggestions 
+        Problem.all.sample(2)
+    end
+end 
