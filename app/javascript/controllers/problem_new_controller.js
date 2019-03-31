@@ -13,7 +13,8 @@ export default class extends Controller {
   next(event) {
     console.log(event)
     if(event.code == "Enter"){
-     
+    event.preventDefault();
+          
         this.index++
     }
   }
