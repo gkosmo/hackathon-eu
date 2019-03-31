@@ -1,4 +1,36 @@
 // Specific CSS for your home-page
+
+.homeContainer {
+    width: 100vw;
+    height: 100vh;
+    background-image: asset-url('AskEU_Logomark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    input {
+        width: 70%;
+        height: 40px;
+        margin-left: 15%;
+        text-align: center;
+        font-family: 'dosisextrabold';
+        font-size: 28px;
+    }
+}
+.homeSlogan {
+    position: absolute;
+    bottom: 100px;
+    left: 42%;
+    font-family: 'dosisextrabold';
+    font-size: 32px;
+}
+
+
+
+
+
+
+//----- JUNK FROM OTHER PLACES
 .tag {
     background-color: #E2E2E2;
     padding: 10px;
