@@ -1,26 +1,7 @@
 <div class="container">
 <div style="height: 20px;"></div>
 <div class="questionShow">
-  <div>
-    <% if @problem.user == current_user %>
-      <div class="tagsBox">
-        <% @problem.tag_list.each do |tag| %>
-          <div class="tag">
-            <%= image_tag "tag.png", :style => "width: 20px; height: 20px" %>
-            <%= tag %>
-            <%= link_to problem_tag_path(tag),
-              method: :delete,
-              data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-times" style="color: grey"></i>
-            <% end %>
-          </div>
-        <% end%>
-      </div>
-      <%= render 'tags/form' %>
-    <% else%>
-      <%= @problem.tag_list %>
-    <% end%>
-  </div>
+  
 
   <div class="questionShowTitle">
     <%= @problem.title %>
@@ -40,6 +21,19 @@
   <div style="display: flex; margin-top: 10px;">
     <p style="color: #949494; font-size: 14px;">Questions -</p>
     <div style="color: #949494; font-size: 14px;"><%= @problem.category. title %></div>
+    <% @problem.tag_list.each do |tag| %>
+          <div class="tag">
+            <%= image_tag "tag.png", :style => "width: 20px; height: 20px" %>
+            <%= tag %>
+            <% if current_user == @problem.user %>
+            <%= link_to problem_tags_path(tag),
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-times" style="color: grey"></i>
+            <% end %>
+            <% end %>
+          </div>
+        <% end%>
     <h6 style="margin-left: auto;" id="<%="problem-votes-#{@problem.id}"%>"> 
       
      <%= render 'problem_votes', problem: @problem %>
