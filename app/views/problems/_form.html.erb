@@ -1,42 +1,30 @@
 <div data-controller="problem-new" data-problem-new-index="0">
-<%= simple_form_for(@problem) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-  <div data-target="problem-new.slide" class="slide " >
-    <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"} %>
-  </div>
-  <div data-target="problem-new.slide" class="slide">
-    <button data-action="slideshow#previous">←</button>
-    <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next"}   %>
+  <%= simple_form_for(problem) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <div data-target="problem-new.slide" class="slide " >
+        <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"} %>
       </div>
-  <div data-target="problem-new.slide" class="slide">
-    <button data-action="slideshow#previous">←</button>
-    <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
-  </div>
-  <div data-target="problem-new.slide" class="slide">
-    <button data-action="slideshow#previous">←</button>
-    <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+      <div data-target="problem-new.slide" class="slide">
+        <button data-action="slideshow#previous">←</button>
+        <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next"}   %>
       </div>
-  <%
-=begin%>
- <div data-target="problem-new.slide" class="slide"> 
-<%
-=end%>
-    <%#= f.input :status %>
-    <%#= f.association :user %>
-    <%#= f.input :status %>
-  <%
-=begin%>
- </div> 
-<%
-=end%>
-  <div data-target="problem-new.slide" class="slide">
-  <button data-action="slideshow#previous">←</button>
-  <div class="form-actions">
-    <%= f.button :submit %>
+      <div data-target="problem-new.slide" class="slide">
+        <button data-action="slideshow#previous">←</button>
+        <%= f.association :category ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+      </div>
+      <div data-target="problem-new.slide" class="slide">
+        <button data-action="slideshow#previous">←</button>
+        <%= f.input :tag_list, label: 'Tags', value: f.object.tag_list.to_s ,  input_html: { 'data-action': "keydown->problem-new#next"} %>
+      </div>
+     
+      <div data-target="problem-new.slide" class="slide" >
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+        <button id="button-previous" data-action="slideshow#previous">←</button>
+      </div>
+      </div>
+    <% end %>
   </div>
-  </div>
-<% end %>
-</div>

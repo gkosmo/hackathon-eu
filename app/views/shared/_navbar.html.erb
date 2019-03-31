@@ -57,13 +57,16 @@
     <ul class="items-list">
       <% if user_signed_in? %>
         <li class="item">
-          <%= link_to "Add a question", new_problem_path, class: "button-blue" %>
+          <%#= link_to "Add a question", new_problem_path, class: "button-blue" %>
+          <button type="button" class="button-blue" data-toggle="modal" data-target="#addQuestion">
+            Add a question
+          </button>
         </li>
         <li class="item">
           <%= link_to "Dashboard", "#", class: "nav-link" %>
         </li>
         <li class="item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       <% else %>
         <li class="item">
@@ -71,7 +74,7 @@
         </li>
       <% end %>
     </ul>
+
   </div> 
-<%
-=end%>
+<%=end%>
 </div>
