@@ -28,28 +28,34 @@
     .analytics-container  { 
         display: grid; 
         
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         padding: 2vh;
         align-items: center;
-        }
-        
-.problem-card { 
-  background-color: white; 
-  width: 60%; 
-  border: 1px solid #E2E2E2; 
-  margin: 0px 0px 5px 10%; 
-  padding: 15px;
-}
-        .on-icons{ 
+        justify-content: space-around;
+    }
+   .analytics-container div {   
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+   }     
+  .problem-card { 
+    background-color: white; 
+    width: 60%; 
+    border: 1px solid #E2E2E2; 
+    margin: 0px 0px 5px 10%; 
+    padding: 15px;
+   }
+   .on-icons{ 
           display:flex; 
           align-items: flex-end;
-        }
+    }
 
 
 .chart-cont {
   width: 50%;
 }
-        .analytics-container div{   
+    .analytics-container div{   
           margin: 2vw;
       }
 }

@@ -7,6 +7,10 @@
         <%= f.input :title, input_html: { 'data-action': "keydown->problem-new#next"}, placeholder: "Start your question with “What”, “How”, “Why”, etc." %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
+        <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"} %>
+        <%= f.input :feedback, input_html: { 'data-action': "keydown->problem-new#next"} %>
+      </div>
+      <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">
         <%= f.input :description, input_html: { 'data-action': "keydown->problem-new#next" }, placeholder: "Describe your problem." %>
       </div>
       <div data-target="problem-new.slide" class="slide" style="padding: 0 35px 0 35px;">

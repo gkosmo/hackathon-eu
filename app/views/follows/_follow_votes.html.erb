@@ -4,11 +4,17 @@
         <%= image_tag "Follow_icon_highlighted.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px;" %>
         <p style="margin: 0px; color: #004494; "><%= problem.follows.count %> </p>
       <% end %>
-    <% else %>
+    <% elsif current_user %>
  
 
       <%= link_to follows_path(follow: { problem_id: problem.id }), method: :post, remote: true, :style => "display:flex;" do %>
        <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px;" %>
          <p style="margin: 0px; color: black; "><%= problem.follows.count %> </p>
       <% end %>
+      <%else %>
+       <%= image_tag "Follow_icon.png", :style => "width: 20px; height: 20px; margin: 0px 10px 5px 0px;" %>
+         <p style="margin: 0px; color: black; "><%= problem.follows.count %> </p>
+         <p> subscribe to follow</p>
+
     <% end %>
+

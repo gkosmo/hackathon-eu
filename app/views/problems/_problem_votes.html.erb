@@ -1,9 +1,16 @@
 <div class="votes-cont">
+ <% if current_user %>
  <%= link_to image_tag(user_upvote_color(current_user, problem), :style => "width: 20px; height: 20px;"), upvote_problem_path(problem), method: :post, remote: true %>
+ <% else %>
+   <%= image_tag 'ThumbsUp_icon.png',  width: '20px', height: '20px' %>
+ <% end %>
 <%= problem.get_upvotes.size %>
 </div>
 <div class="votes-cont">
-
+ <% if current_user %>
       <%= link_to image_tag(user_downvote_color(current_user, problem), :style => "width: 20px; height: 20px;"), downvote_problem_path(problem), method: :post, remote: true %>
+      <% else %>
+   <%= image_tag 'ThumbsDown_icon.png', :style => "width: 20px; height: 20px" %>
+ <% end %>
 <%= problem.get_downvotes.size %>
 </div>
