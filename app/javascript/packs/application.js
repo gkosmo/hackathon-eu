@@ -9,6 +9,7 @@ application.load(definitionsFromContext(context))
 
 
 let dashboard = document.querySelector('.dashboard-container')
+
 if(dashboard){ 
 
     const program_tab = document.querySelector('#tab-created')
@@ -19,6 +20,8 @@ if(dashboard){
     const poetry_div = document.querySelector('.followed')
     const array_tabs = [ program_tab, visual_tab, poetry_tab ]
     const array_divs = [ program_div, visual_div, poetry_div]
+    console.log(array_tabs)
+    console.log(array_divs)
     function cleanAll(){
     array_tabs.forEach((tab) => {
         tab.classList.remove('underlines')
@@ -32,8 +35,8 @@ if(dashboard){
         e.preventDefault();
         cleanAll();
          program_div.classList.remove('hidden')
-        program_tab.classList.add('underlines')
-        visual_tab.classList.remove('under')
+         e.currentTarget.classList.add('underlines')
+
     })
     visual_tab.addEventListener('click', function(e){
         e.preventDefault();
