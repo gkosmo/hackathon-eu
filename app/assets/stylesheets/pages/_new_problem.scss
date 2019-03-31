@@ -9,7 +9,9 @@
 .analytics-container { 
   display: grid;
 }
-
+.chart-cont {
+   width: 70vw;
+}
 
 .analytics-container div{   
   margin: 2vw;
@@ -19,11 +21,16 @@
     .analytics-container  { 
         display: grid; 
         
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         padding: 2vh;
         align-items: center;
         }
+
+
+.chart-cont {
+  width: 50%;
+}
         .analytics-container div{   
           margin: 2vw;
       }
-      }
+}
