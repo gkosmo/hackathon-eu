@@ -5,10 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Comment.destroy_all
+Problem.destroy_all
 Category.destroy_all
 
-Category.create!(title: "Travel within the Union")
+travel = Category.create!(title: "Travel within the Union")
 Category.create!(title: "Work and retirement within the Union")
 Category.create!(title: "Vehicles in the Union")
 Category.create!(title: "Residence in another Member State")
@@ -25,8 +26,54 @@ Category.create!(title: "Services")
 Category.create!(title: "Funding a business")
 Category.create!(title: "Public contracts")
 Category.create!(title: "Health and safety at work")
+users =[ User.create(email: 'a@a.com', password: "123123") ] 
+users << User.create(email: 'a@a.com', password: "123123")
+users << User.create(email: 'a@a.com', password: "123123")
+users << User.create(email: 'a@a.com', password: "123123")
+users << User.create(email: 'a@a.com', password: "123123")
+
+p problem_1 = Problem.create!(title: "Can I use my driving licence as an ID document at the border?", description: "I'm Portuguese and am going to Cyprus this summer for holidays. I'm taking the ferry with my car on a cruise and they accepted my driving licence. Is that enough ? ", category: travel)
+p problem_1.comments.create!(description: "Is it with the MedTour Cruise ? I'm French and I have the same problem", user: users.sample )
+require 'open-uri'
+require 'nokogiri'
 
 
+url = 'https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-family/faq/index_en.htm'
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: travel)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    
+end
+url = "https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/faq/index_en.htm"
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search('.question-list li').each do |element|
+   question =  element.search('.question')[0].text.strip
+   answer =  element.search('.answer')[0].text.strip
+    p question
+    p problem_1 = Problem.create!(title: question.split('.').last , description: question, category: travel)
+    p problem_1.comments.create!(description: answer, user: users.sample )
+    problem_1.tag_list.add(['transport disability', 'reduced mobility'])
+    problem_1.save
+end
 
 
-
+url = "https://restcountries.eu/rest/v2/regionalbloc/eu" 
+page_json =  HTTParty.get(url)
+ countries = JSON.parse(page_json.body)
+ countries_name_list = { }
+ countries.each do  |country| 
+    tag = country['name']
+    problems  =  Problem.global_search(tag) 
+    problems.each do |problem| 
+        
+        problem.tag_list.add(tag)
+        problem.save
+    end
+ end

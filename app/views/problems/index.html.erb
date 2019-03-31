@@ -21,7 +21,7 @@
           <td><%= problem.category.title %></td>
           <td><%= problem.title %></td>
           <td><%= problem.description %></td>
-          <td><%= problem.user.email %></td>
+          <td><%= problem.user&.email %></td>
           <td><%= problem.status %></td>
           <td><%= problem.tag_list %></td>
           <td><%= link_to 'Show', problem %></td>
