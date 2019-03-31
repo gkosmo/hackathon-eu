@@ -18,7 +18,7 @@
 }
 
 .items-list {
-   display: flex;
+  display: flex;
   flex-direction: row;
   li{
   font-weight:bold;
@@ -61,54 +61,24 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.modal-dialog{
+  max-width: 800px;
+}
 
-// .navbar .navbar-expand-sm .navbar-light .navbar-lewagon{
-// }
-
-// .navbar-lewagon .navbar-collapse {
-//   flex-grow: 0;
-// }
-
-// .navbar-lewagon .navbar-brand img {
-//   width: 110px;
-//   padding: 0 0 10px 0;
-// }
-// .search-bar{
-//   margin-top: 120x;
+// .modal-content{
+//   border-radius: 1%;
 // }
 
-// .search-bar-nav{
-//   width: 350px;
-//   font-family: Arial, Helvetica, sans-serif;
-// }
+.modal-body{
+text-align: left;
+}
 
-// .navbar-logo img{
-//  width: 40px;
-// }
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
-// .nav-link {
-//   color: $gray !important;
-//   font-family: Arial, Helvetica, sans-serif;
-// }
-
-// .nav-item{
-//   .button-blue{
-//     margin-top: 50px;
-//     padding: 5px 25px 5px 25px;
-//     color: white;
-//     background-color: $blue;
-//     border: solid 1px $blue;
-//     border-radius: 5%;
-//     font-family: Arial, Helvetica, sans-serif;
-//     font-weight: 550;
-//     height: 30px;
-//     text-decoration: none;
-//   }
-// }
-
-// .button-blue:hover{
-//   background-color: $yellow;
-//   border: solid 1px $yellow;
-//   color: $blue;
-//   text-decoration: none;
-// }
+ul .tips-list{
+  list-style-image: asset_path('Check-icon.png');
+}

@@ -28,13 +28,16 @@
     <ul class="items-list">
       <% if user_signed_in? %>
         <li class="item">
-          <%= link_to "Add a question", new_problem_path, class: "button-blue" %>
+          <%#= link_to "Add a question", new_problem_path, class: "button-blue" %>
+          <button type="button" class="button-blue" data-toggle="modal" data-target="#addQuestion">
+            Add a question
+          </button>
         </li>
         <li class="item">
           <%= link_to "Dashboard", "#", class: "nav-link" %>
         </li>
         <li class="item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       <% else %>
         <li class="item">
@@ -42,5 +45,30 @@
         </li>
       <% end %>
     </ul>
+  </div>
+  <div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div style="padding: 0 0 0 20px;">
+            <h5>Tips to obtain relevant answers quickly</h5>
+          </div>
+          <div>
+            <ul class="tips-list">
+              <li>Make sure your question hasn’t been asked before</li>
+              <li>For your question, try to keep it short and clear</li>
+              <li>Try to make sure there aren’t an abundance of grammatical errors</li>
+            </ul>
+          </div>
+        </div>
+        <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
+        <%= render 'problems/form', problem: Problem.new %>
+        <div style="height: 1px; width: 100%; background-color: #E2E2E2;"> </div>
+        <div class="modal-body">
+          <p style="padding: 0 0 0 25px;">Optional : add a file for more context.</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
