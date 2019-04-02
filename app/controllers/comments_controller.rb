@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: %i[show edit update destroy]
 
   # GET /comments
   # GET /comments.json
@@ -26,13 +26,13 @@ class CommentsController < ApplicationController
   def create
     set_problem
     @comment = Comment.new(comment_params)
-    @comment.user = current_user 
-    @comment.problem =  @problem
+    @comment.user = current_user
+    @comment.problem = @problem
     respond_to do |format|
       if @comment.save!
         format.html { redirect_to @problem, notice: 'Comment was successfully created.' }
         format.json { render "problems/show", status: :created, location: @problem }
-        format.js { }
+        format.js {}
       else
         format.html { render "problems/show" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -64,37 +64,37 @@ class CommentsController < ApplicationController
     end
   end
 
-
-
   def upvote
     set_comment
     if current_user.voted_for? @comment
-        current_user.unvote_for @comment
+      current_user.unvote_for @comment
     else
-        current_user.up_votes @comment
+      current_user.up_votes @comment
     end
-  
   end
-  
+
   def downvote
     set_comment
-     if current_user.voted_for? @comment
-       current_user.unvote_for @comment
-     else
-       current_user.down_votes @comment
-     end
+    if current_user.voted_for? @comment
+      current_user.unvote_for @comment
+    else
+      current_user.down_votes @comment
+    end
    end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
-    def set_problem    
-      @problem = Problem.find(params[:problem_id])
-    end 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:description)
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def set_problem
+    @problem = Problem.find(params[:problem_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:description)
+  end
 end

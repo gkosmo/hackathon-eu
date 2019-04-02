@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_action :set_follow, only: [:show, :edit, :update, :destroy]
+  before_action :set_follow, only: %i[show edit update destroy]
 
   # GET /follows
   # GET /follows.json
@@ -27,7 +27,7 @@ class FollowsController < ApplicationController
     @follow = Follow.new(follow_params)
     @follow.user = current_user
     @problem = Problem.find @follow.problem_id
-    @problem.reload 
+    @problem.reload
     current_user.reload
     respond_to do |format|
       if @follow.save
@@ -63,7 +63,7 @@ class FollowsController < ApplicationController
     @problem = Problem.find @follow.problem_id
 
     @follow.destroy
-    @problem.reload 
+    @problem.reload
     current_user.reload
     respond_to do |format|
       format.js
@@ -74,13 +74,14 @@ class FollowsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_follow
-      @follow = Follow.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def follow_params
-      params.require(:follow).permit(:problem_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_follow
+    @follow = Follow.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def follow_params
+    params.require(:follow).permit(:problem_id)
+  end
 end

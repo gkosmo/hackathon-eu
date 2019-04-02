@@ -6,11 +6,10 @@ class PagesController < ApplicationController
   end
 
   def analytics
-    @problem_countries = Problem.by_countries 
-    @pie_data = Category.all.map{ |cate|  [ cate.title, cate.problems.count] }
+    @problem_countries = Problem.by_countries
+    @pie_data = Category.all.map { |cate| [cate.title, cate.problems.count] }
   end
 
-  def dashboard 
-   
+  def dashboard
   end
 end
